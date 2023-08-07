@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Hotel.Controllers.Services;
 using Hotel.Models;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
+using Hotel.Services;
+using Hotel.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Hotel.Controllers
 {
+    [Authorize]
     [Route("api/[Controller]/[action]")]
     [ApiController]
 
@@ -29,6 +32,8 @@ namespace Hotel.Controllers
         public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq) => await _context.AddNewRoom(newRoomReq);
         [HttpPut]
         public async Task<Room> BookARoom(int id) => await _context.BookARoom(id);
+        [HttpDelete]
+        public  void DeleteRoom(int id) =>  _context.DeleteRoom(id);
     }
     
 }

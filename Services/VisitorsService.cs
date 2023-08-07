@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Hotel.Models;
-
-namespace Hotel.Controllers.Services
+using Hotel.Interfaces;
+namespace Hotel.Services
 {
 
-    public interface IVisitorsService
-    {
-        List<Visitor> ShowAllVisitors();
-        Task<Visitor> NewVisitor(NewVisitorRequest request);
-    }
+   
     public class VisitorsService : IVisitorsService
     {
         private readonly DataContext _context;
@@ -31,9 +27,14 @@ namespace Hotel.Controllers.Services
                 Sex = request.Sex,
                 PhoneNumber = request.PhoneNumber,
             };
-            await _context.Visitors.AddAsync(newVisitor);
-            _context.SaveChangesAsync();
-            return newVisitor;
+            var tracking = await _context.Visitors.AddAsync(newVisitor);
+            await _context.SaveChangesAsync();
+            return tracking.Entity;
+        }
+        public void DeleteVisitor(int id)
+        {
+            _context.Visitors.Remove(_context.Find<Visitor>(id));
+            _context.SaveChanges();
         }
     }
 }

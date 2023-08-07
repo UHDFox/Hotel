@@ -9,7 +9,7 @@ namespace Hotel
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         { 
-            Database.EnsureCreated(); 
+           
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,6 +17,8 @@ namespace Hotel
         }
         public DbSet<Room> Rooms { get; set; } = null!;
         public DbSet<Visitor> Visitors { get; set; } = null!;
+        public DbSet<Order> Orders { get; set; } = null!;
+        public DbSet<User> Users { get; set; }
         
     }
 }
