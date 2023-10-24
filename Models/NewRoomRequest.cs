@@ -1,6 +1,6 @@
 ﻿namespace Hotel.Models;
 
-public class NewRoomRequest
+public sealed class NewRoomRequest
 {
     public string? Number { get; set; }
 

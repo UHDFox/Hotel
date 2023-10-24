@@ -1,6 +1,6 @@
 ﻿namespace Hotel.Models;
 
-public class User
+public sealed class User
 {
     public int Id { get; set; }
 

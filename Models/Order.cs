@@ -2,7 +2,7 @@
 
 namespace Hotel.Models;
 
-public class Order
+public sealed class Order
 {
     [Key]
     public int Id { get; set; }

@@ -6,7 +6,7 @@ namespace Hotel.Controllers;
 
 [Route("api/[controller]/[action]")]
 [ApiController]
-public class UsersController : Controller
+public sealed class UsersController : Controller
 {
     private readonly IUsers context;
 

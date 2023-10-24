@@ -3,7 +3,7 @@ using Hotel.Models;
 
 namespace Hotel.Services;
 
-public class RoomsService : IRoomsService
+internal sealed class RoomsService : IRoomsService
 {
     private readonly DataContext context;
 

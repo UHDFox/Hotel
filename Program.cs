@@ -7,7 +7,7 @@ using Microsoft.OpenApi.Models;
 
 namespace Hotel;
 
-public class Program
+internal sealed class Program
 {
     public static void Main(string[] args)
     {

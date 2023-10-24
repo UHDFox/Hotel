@@ -5,7 +5,7 @@ namespace Hotel.Controllers;
 
 [Route("api/login")]
 [ApiController]
-public class AuthController : Controller
+public sealed class AuthController : Controller
 {
     private readonly IAuth context;
 

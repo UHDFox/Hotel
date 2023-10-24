@@ -3,7 +3,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Hotel;
 
-public class AuthOptions
+public sealed class AuthOptions
 {
     public const string Issuer = "CapybaraInc";
     public const string Audience = "HotelClient";

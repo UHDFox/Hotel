@@ -8,7 +8,7 @@ namespace Hotel.Controllers;
 [Authorize]
 [Route("api/[Controller]/[action]")]
 [ApiController]
-public class OrdersController : Controller
+public sealed class OrdersController : Controller
 {
     private readonly IOrdersService context;
 

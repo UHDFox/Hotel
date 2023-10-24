@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hotel.Services;
 
-public class OrdersService : IOrdersService
+internal sealed class OrdersService : IOrdersService
 {
     private readonly DataContext context;
 

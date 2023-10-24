@@ -1,6 +1,6 @@
 ﻿namespace Hotel.Models;
 
-public class NewUserRequest
+public sealed class NewUserRequest
 {
     public string Login { get; set; }
 

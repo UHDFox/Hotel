@@ -1,6 +1,6 @@
 ﻿namespace Hotel.Models;
 
-public class NewOrderRequest
+public sealed class NewOrderRequest
 {
     public int RoomId { get; set; }
 

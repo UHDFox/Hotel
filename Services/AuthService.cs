@@ -5,7 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Hotel.Services;
 
-public class AuthService : IAuth
+internal sealed class AuthService : IAuth
 {
     private readonly DataContext context;
 

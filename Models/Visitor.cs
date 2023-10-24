@@ -2,7 +2,7 @@
 
 namespace Hotel.Models;
 
-public class Visitor
+public sealed class Visitor
 {
     [Key]
     public int Id { get; set; }

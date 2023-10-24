@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Hotel;
 
-public class DataContext : DbContext
+public sealed class DataContext : DbContext
 {
     public DataContext(DbContextOptions<DataContext> options) : base(options)
     {
