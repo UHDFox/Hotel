@@ -1,7 +1,5 @@
 ﻿using Hotel.Interfaces;
 using Hotel.Models;
-using Microsoft.Identity.Client;
-using System.Diagnostics.Eventing.Reader;
 
 namespace Hotel.Services;
 

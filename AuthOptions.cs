@@ -1,5 +1,4 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using NuGet.Packaging.Signing;
 using System.Text;
 
 namespace Hotel;

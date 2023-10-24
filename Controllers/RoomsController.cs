@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using Hotel.Models;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
-using Hotel.Services;
 using Hotel.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 

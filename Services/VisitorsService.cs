@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Hotel.Models;
+﻿using Hotel.Models;
 using Hotel.Interfaces;
 namespace Hotel.Services;
 

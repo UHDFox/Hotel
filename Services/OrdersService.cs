@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Hotel.Interfaces;
+﻿using Hotel.Interfaces;
 using Hotel.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,10 +14,6 @@ public class OrdersService : IOrdersService
     int id { get; set; }
     public async Task<Order> MakeAnOrder(NewOrderRequest req)
     {
-        // Room ReqRoom = _context.Find<Room>(id);
-        //Visitor newVisitor = _context.Find<Visitor>(id);
-
-
         Order newOrder = new Order()
         {
             BookedRoom = _context.Find<Room>(req.RoomId),
@@ -40,20 +35,3 @@ public class OrdersService : IOrdersService
             .ToList();
     }
 }
-/* public async Task<Order> MakeAnOrder(NewOrderRequest req)
-        {
-           // Room ReqRoom = _context.Find<Room>(id);
-            //Visitor newVisitor = _context.Find<Visitor>(id);
-            Order newOrder = new Order()
-            {
-                BookedRoom = _context.Find<Room>(req.RoomId),
-                Visitor = _context.Find<Visitor>(req.VisitorId),
-                CheckInDate = req.CheckInDate,
-                LeavingDate = req.LeavingDate
-            };
-            var tracking = await _context.AddAsync(newOrder);
-            await _context.SaveChangesAsync();
-            return tracking.Entity;
-        }*/
-
-

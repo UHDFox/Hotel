@@ -1,5 +1,4 @@
-﻿
-namespace Hotel.Models;
+﻿namespace Hotel.Models;
 
 public class NewRoomRequest
 {

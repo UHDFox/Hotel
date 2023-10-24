@@ -1,7 +1,5 @@
 ﻿using Hotel.Models;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore;
-
 
 namespace Hotel;
 
@@ -21,8 +19,3 @@ public class DataContext : DbContext
     public DbSet<User> Users { get; set; }
         
 }
-
-/*  public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-        
-        public DataContext() { Database.EnsureCreated(); }  
-        public DbSet<Book> Books { get; set; } = null!;*/

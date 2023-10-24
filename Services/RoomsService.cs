@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Hotel.Models;
-using Microsoft.Identity.Client;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.ComponentModel.DataAnnotations;
+﻿using Hotel.Models;
 using Hotel.Interfaces;
 namespace Hotel.Services;
 
@@ -55,21 +51,4 @@ public class RoomsService : IRoomsService
         _context.SaveChanges();
 
     }
-
-
-
 }
-
-
-/*public int ID { get; set; }
-        public enum RoomType
-        {
-            Standart,
-            Superior,
-            Studio,
-            Suite,
-            Duplex
-        };
-        public bool HaveConditioner { get; set; }
-        public bool HaveKitchen { get; set; }
-        public bool IsOccupated { get; set; }*/

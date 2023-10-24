@@ -9,6 +9,7 @@ public class Visitor
     public int ID { get; set; }
     public string? Name { get; set; }
     public string? Surname { get; set; }
+    
     [Required(ErrorMessage = "Sex must be entered")]
     [Compare("")]
     public string? Sex { get; set; }
