@@ -1,10 +1,9 @@
 ﻿using Hotel.Models;
 
-namespace Hotel.Interfaces
+namespace Hotel.Interfaces;
+
+public interface IUsers
 {
-    public interface IUsers
-    {
-        public List<User> ShowAllUsers();
-        public Task<User> AddNewUser(NewUserRequest req);
-    }
+    public List<User> ShowAllUsers();
+    public Task<User> AddNewUser(NewUserRequest req);
 }
