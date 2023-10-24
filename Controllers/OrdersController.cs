@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotel.Interfaces;
 using Hotel.Models;
-using Hotel.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.Controllers;
 
@@ -11,10 +11,10 @@ namespace Hotel.Controllers;
 public class OrdersController : Controller
 {
     private readonly IOrdersService context;
+
     public OrdersController(IOrdersService context)
     {
         this.context = context;
-
     }
 
     [HttpGet]
@@ -23,7 +23,7 @@ public class OrdersController : Controller
         var orders = context.ShowAllOrders();
         return orders;
     }
+
     [HttpPost]
     public async Task<Order> MakeAnOrder(NewOrderRequest req) => await context.MakeAnOrder(req);
-
 }

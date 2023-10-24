@@ -1,8 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Hotel.Interfaces;
 using Hotel.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 namespace Hotel;
@@ -17,14 +17,15 @@ public class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen(c =>
         {
-            c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
-            {
-                Description = "Введите токен авторизации",
-                Name = "Authorization",
-                In = ParameterLocation.Header,
-                Type = SecuritySchemeType.ApiKey,
-                Scheme = JwtBearerDefaults.AuthenticationScheme
-            });
+            c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme,
+                new OpenApiSecurityScheme
+                {
+                    Description = "Введите токен авторизации",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = JwtBearerDefaults.AuthenticationScheme
+                });
             c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
@@ -43,7 +44,7 @@ public class Program
                 }
             });
         });
-        builder.Services.AddTransient<IVisitorsService,  VisitorsService>();
+        builder.Services.AddTransient<IVisitorsService, VisitorsService>();
         builder.Services.AddTransient<IRoomsService, RoomsService>();
         builder.Services.AddTransient<IOrdersService, OrdersService>();
         builder.Services.AddTransient<IAuth, AuthService>();
@@ -68,20 +69,19 @@ public class Program
                 };
             });
         var app = builder.Build();
-            
+
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
             app.UseSwaggerUI(opt => opt.DefaultModelExpandDepth(-1));
-
         }
-            
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
         app.UseAuthentication();
 
-            
+
         app.MapControllers();
 
         app.Run();

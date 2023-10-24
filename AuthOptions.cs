@@ -1,5 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System.Text;
+﻿using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Hotel;
 
@@ -8,8 +8,6 @@ public class AuthOptions
     public const string Issuer = "CapybaraInc";
     public const string Audience = "HotelClient";
     private const string Key = "superpassword that is long enough to make this programm run without trouble";
-    public static SymmetricSecurityKey GetSymmetricSecurityKey()
-    {
-        return new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Key));
-    }
+
+    public static SymmetricSecurityKey GetSymmetricSecurityKey() => new(Encoding.UTF8.GetBytes(Key));
 }

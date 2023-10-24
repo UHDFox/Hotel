@@ -1,23 +1,22 @@
-﻿using Hotel.Models;
-using Hotel.Interfaces;
+﻿using Hotel.Interfaces;
+using Hotel.Models;
+
 namespace Hotel.Services;
 
 public class RoomsService : IRoomsService
 {
     private readonly DataContext context;
+
     public RoomsService(DataContext context)
     {
         this.context = context;
     }
-    public List<Room> ShowAllRooms()
-    {
-        return context.Rooms.ToList();
 
-    }
+    public List<Room> ShowAllRooms() => context.Rooms.ToList();
+
     public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq)
     {
-
-        Room room = new Room()
+        var room = new Room
         {
             Number = newRoomReq.Number,
             HaveConditioner = newRoomReq.HaveConditioner,
@@ -34,7 +33,6 @@ public class RoomsService : IRoomsService
         var wantedRoom = context.Find<Room>(id);
         if (wantedRoom.IsOccupated)
         {
-
             throw new ArgumentException("We're sorry, but the room is already occupied. Please, choose another one");
         }
 
@@ -47,6 +45,5 @@ public class RoomsService : IRoomsService
     {
         context.Rooms.Remove(context.Find<Room>(id));
         context.SaveChanges();
-
     }
 }

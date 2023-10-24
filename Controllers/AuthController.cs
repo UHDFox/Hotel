@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Hotel.Interfaces;
+﻿using Hotel.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hotel.Controllers;
 
@@ -15,5 +15,5 @@ public class AuthController : Controller
     }
 
     [HttpPost]
-    public string Login(string login, string password) =>  context.Login(login,password);
+    public string Login(string login, string password) => context.Login(login, password);
 }
