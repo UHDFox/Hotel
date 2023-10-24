@@ -17,7 +17,6 @@ public class VisitorsController : Controller
         context = visitorsService;
     }
 
-
     [HttpGet]
     public IActionResult ShowAllVisitors()
     {

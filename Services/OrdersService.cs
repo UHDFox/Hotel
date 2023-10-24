@@ -13,8 +13,6 @@ public class OrdersService : IOrdersService
         this.context = context;
     }
 
-    private int Id { get; set; }
-
     public async Task<Order> MakeAnOrder(NewOrderRequest req)
     {
         var newOrder = new Order
@@ -24,6 +22,7 @@ public class OrdersService : IOrdersService
             CheckInDate = req.CheckInDate,
             LeavingDate = req.LeavingDate
         };
+
         newOrder.BookedRoom.IsOccupated = true;
 
         var tracking = await context.AddAsync(newOrder);
