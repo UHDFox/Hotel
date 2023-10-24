@@ -10,20 +10,20 @@ namespace Hotel.Controllers;
 [ApiController]
 public class OrdersController : Controller
 {
-    IOrdersService _context;
+    private readonly IOrdersService context;
     public OrdersController(IOrdersService context)
     {
-        _context = context;
-            
+        this.context = context;
+
     }
-        
+
     [HttpGet]
     public List<Order> ShowAllOrders()
     {
-        var orders = _context.ShowAllOrders();
+        var orders = context.ShowAllOrders();
         return orders;
     }
     [HttpPost]
-    public async Task<Order> MakeAnOrder(NewOrderRequest req) => await _context.MakeAnOrder(req);
+    public async Task<Order> MakeAnOrder(NewOrderRequest req) => await context.MakeAnOrder(req);
 
 }

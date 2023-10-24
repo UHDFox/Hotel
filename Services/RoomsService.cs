@@ -4,15 +4,15 @@ namespace Hotel.Services;
 
 public class RoomsService : IRoomsService
 {
-    private readonly DataContext _context;
+    private readonly DataContext context;
     public RoomsService(DataContext context)
     {
-        _context = context;
+        this.context = context;
     }
     public List<Room> ShowAllRooms()
     {
-        return _context.Rooms.ToList();
-            
+        return context.Rooms.ToList();
+
     }
     public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq)
     {
@@ -24,31 +24,29 @@ public class RoomsService : IRoomsService
             HaveKitchen = newRoomReq.HaveKitchen,
             IsOccupated = newRoomReq.IsOccupated
         };
-        var tracking = await _context.AddAsync(room);
-        await _context.SaveChangesAsync();
+        await context.AddAsync(room);
+        await context.SaveChangesAsync();
         return room;
     }
 
     public async Task<Room> BookARoom(int id)
     {
-        var wantedRoom = _context.Find<Room>(id);
-        if (wantedRoom.IsOccupated == true)
+        var wantedRoom = context.Find<Room>(id);
+        if (wantedRoom.IsOccupated)
         {
 
             throw new ArgumentException("We're sorry, but the room is already occupied. Please, choose another one");
         }
-        else
-        {
-            wantedRoom.IsOccupated = true;
-        }
-        await _context.SaveChangesAsync();
+
+        wantedRoom.IsOccupated = true;
+        await context.SaveChangesAsync();
         return wantedRoom;
     }
 
     public void DeleteRoom(int id)
     {
-        _context.Rooms.Remove(_context.Find<Room>(id));
-        _context.SaveChanges();
+        context.Rooms.Remove(context.Find<Room>(id));
+        context.SaveChanges();
 
     }
 }

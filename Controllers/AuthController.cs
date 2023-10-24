@@ -7,13 +7,13 @@ namespace Hotel.Controllers;
 [ApiController]
 public class AuthController : Controller
 {
-    private readonly IAuth _context;
-        
+    private readonly IAuth context;
+
     public AuthController(IAuth context)
     {
-        _context = context;
+        this.context = context;
     }
 
     [HttpPost]
-    public string Login(string login, string password) =>  _context.Login(login,password);
+    public string Login(string login, string password) =>  context.Login(login,password);
 }

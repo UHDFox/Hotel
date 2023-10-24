@@ -12,21 +12,21 @@ public class VisitorsController : Controller
 {
     public VisitorsController(IVisitorsService visitorsService)
     {
-        _context = visitorsService;
+        context = visitorsService;
     }
-    IVisitorsService _context;
-        
+
+    private readonly IVisitorsService context;
+
 
     [HttpGet]
     public IActionResult ShowAllVisitors()
     {
-        List<Visitor> visitors = _context.ShowAllVisitors();
+        List<Visitor> visitors = context.ShowAllVisitors();
         return Ok(visitors);
     }
     [HttpPost]
-    public async Task<Visitor> NewVisitor(NewVisitorRequest request) => await _context.NewVisitor(request);
+    public async Task<Visitor> NewVisitor(NewVisitorRequest request) => await context.NewVisitor(request);
 
     [HttpDelete]
-    public void DeleteVisitor(int id) => _context.DeleteVisitor(id);
-        
+    public void DeleteVisitor(int id) => context.DeleteVisitor(id);
 }

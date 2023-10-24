@@ -5,28 +5,28 @@ namespace Hotel.Services;
 
 public class UserService : IUsers
 {
-    private readonly DataContext _context;
+    private readonly DataContext context;
     public UserService(DataContext context)
     {
-        _context = context;
+        this.context = context;
     }
 
 
     public List<User> ShowAllUsers()
     {
-        return _context.Users.ToList();
+        return context.Users.ToList();
     }
 
     public async Task<User> AddNewUser(NewUserRequest request)
     {
-        User user = new User { 
+        User user = new User {
             Login = request.Login,
             Password = request.Password,
             UserName = request.UserName,
             Email = request.Email,
         };
-        var tracking = await _context.Users.AddAsync(user);
-        await _context.SaveChangesAsync();
+        var tracking = await context.Users.AddAsync(user);
+        await context.SaveChangesAsync();
         return tracking.Entity;
     }
 }

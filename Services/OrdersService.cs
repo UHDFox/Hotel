@@ -6,30 +6,30 @@ namespace Hotel.Services;
 
 public class OrdersService : IOrdersService
 {
-    private readonly DataContext _context;
+    private readonly DataContext context;
     public OrdersService(DataContext context)
     {
-        _context = context;
+        this.context = context;
     }
-    int id { get; set; }
+    int Id { get; set; }
     public async Task<Order> MakeAnOrder(NewOrderRequest req)
     {
         Order newOrder = new Order()
         {
-            BookedRoom = _context.Find<Room>(req.RoomId),
-            Visitor = _context.Find<Visitor>(req.VisitorId),
+            BookedRoom = context.Find<Room>(req.RoomId),
+            Visitor = context.Find<Visitor>(req.VisitorId),
             CheckInDate = req.CheckInDate,
             LeavingDate = req.LeavingDate
         };
         newOrder.BookedRoom.IsOccupated = true;
-   
-        var tracking = await _context.AddAsync(newOrder);
-        await _context.SaveChangesAsync();
+
+        var tracking = await context.AddAsync(newOrder);
+        await context.SaveChangesAsync();
         return tracking.Entity;
     }
     public List<Order> ShowAllOrders()
     {
-        return _context.Orders
+        return context.Orders
             .Include(v => v.Visitor)
             .Include(r => r.BookedRoom)
             .ToList();

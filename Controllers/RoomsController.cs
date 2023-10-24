@@ -12,23 +12,23 @@ namespace Hotel.Controllers;
 
 public class RoomsController : Controller
 {
-    IRoomsService _context;
+    private readonly IRoomsService context;
     public RoomsController(IRoomsService roomContext)
     {
-        _context = roomContext;
+        context = roomContext;
     }
 
     [HttpGet]
     public ActionResult ShowAllRooms()
     {
-        var rooms = _context.ShowAllRooms();
+        var rooms = context.ShowAllRooms();
         return Ok(rooms);
     }
 
     [HttpPost]
-    public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq) => await _context.AddNewRoom(newRoomReq);
+    public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq) => await context.AddNewRoom(newRoomReq);
     [HttpPut]
-    public async Task<Room> BookARoom(int id) => await _context.BookARoom(id);
+    public async Task<Room> BookARoom(int id) => await context.BookARoom(id);
     [HttpDelete]
-    public  void DeleteRoom(int id) =>  _context.DeleteRoom(id);
+    public  void DeleteRoom(int id) =>  context.DeleteRoom(id);
 }

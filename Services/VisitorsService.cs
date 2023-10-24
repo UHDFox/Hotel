@@ -4,32 +4,31 @@ namespace Hotel.Services;
 
 public class VisitorsService : IVisitorsService
 {
-    private readonly DataContext _context;
+    private readonly DataContext context;
     public VisitorsService(DataContext context)
     {
-        _context = context;
+        this.context = context;
     }
     public List<Visitor> ShowAllVisitors()
     {
-        return _context.Visitors.ToList();
+        return context.Visitors.ToList();
     }
     public async Task<Visitor> NewVisitor(NewVisitorRequest request)
     {
         Visitor newVisitor = new Visitor()
         {
-
             Name = request.Name,
             Surname = request.Surname,
             Sex = request.Sex,
             PhoneNumber = request.PhoneNumber,
         };
-        var tracking = await _context.Visitors.AddAsync(newVisitor);
-        await _context.SaveChangesAsync();
+        var tracking = await context.Visitors.AddAsync(newVisitor);
+        await context.SaveChangesAsync();
         return tracking.Entity;
     }
     public void DeleteVisitor(int id)
     {
-        _context.Visitors.Remove(_context.Find<Visitor>(id));
-        _context.SaveChanges();
+        context.Visitors.Remove(context.Find<Visitor>(id));
+        context.SaveChanges();
     }
 }

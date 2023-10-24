@@ -5,5 +5,5 @@ namespace Hotel.Interfaces;
 public interface IUsers
 {
     public List<User> ShowAllUsers();
-    public Task<User> AddNewUser(NewUserRequest req);
+    public Task<User> AddNewUser(NewUserRequest request);
 }

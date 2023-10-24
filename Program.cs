@@ -25,7 +25,7 @@ public class Program
                 Type = SecuritySchemeType.ApiKey,
                 Scheme = JwtBearerDefaults.AuthenticationScheme
             });
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
             {
                 {
                     new OpenApiSecurityScheme
@@ -64,13 +64,10 @@ public class Program
                     ValidAudience = AuthOptions.Audience,
                     ValidateLifetime = true,
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-                    ValidateIssuerSigningKey = true,
-
+                    ValidateIssuerSigningKey = true
                 };
             });
         var app = builder.Build();
-
-        // Configure the HTTP request pipeline
             
         if (app.Environment.IsDevelopment())
         {

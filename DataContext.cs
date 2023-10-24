@@ -17,5 +17,4 @@ public class DataContext : DbContext
     public DbSet<Visitor> Visitors { get; set; } = null!;
     public DbSet<Order> Orders { get; set; } = null!;
     public DbSet<User> Users { get; set; }
-        
 }

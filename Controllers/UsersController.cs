@@ -8,18 +8,18 @@ namespace Hotel.Controllers;
 [ApiController]
 public class UsersController : Controller
 {
-    public readonly IUsers _context;
+    private readonly IUsers context;
     public UsersController(IUsers context)
     {
-        _context = context;
+        this.context = context;
     }
     [HttpGet]
     public IActionResult ShowAllUsers()
     {
-        List<User> users = _context.ShowAllUsers();
+        List<User> users = context.ShowAllUsers();
         return Ok(users);
     }
 
     [HttpPost]
-    public async Task<User> AddNewUser(NewUserRequest request) => await _context.AddNewUser(request);
+    public async Task<User> AddNewUser(NewUserRequest request) => await context.AddNewUser(request);
 }
