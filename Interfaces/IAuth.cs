@@ -1,16 +1,6 @@
-﻿using Hotel.Models;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
-
-namespace Hotel.Interfaces
+﻿namespace Hotel.Interfaces;
+//TODO: интерфейсы лучше помещать рядом с их имплементациями, да и в целом по папкам распихивать всё, что требуется для конкретной задачи
+public interface IAuth
 {
-    public interface IAuth
-    {
-        /*List<User> GetAllUsers();
-        User GetUserById(int id);*/
-        
-        public string Login(string login, string password);
-
-        
-
-    }
+    public string Login(string login, string password);
 }

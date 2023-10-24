@@ -1,31 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotel.Interfaces;
 using Hotel.Models;
-using Hotel.Interfaces;
-using Hotel.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
-namespace Hotel.Controllers
+namespace Hotel.Controllers;
+
+[Authorize]
+[Route("api/[Controller]/[action]")]
+[ApiController]
+public sealed class OrdersController : Controller
 {
-    [Authorize]
-    [Route("api/[Controller]/[action]")]
-    [ApiController]
-    public class OrdersController : Controller
-    {
-        IOrdersService _context;
-        public OrdersController(IOrdersService context)
-        {
-            _context = context;
-            
-        }
-        
-        [HttpGet]
-        public List<Order> ShowAllOrders()
-        {
-            var orders = _context.ShowAllOrders();
-            return orders;
-        }
-        [HttpPost]
-        public async Task<Order> MakeAnOrder(NewOrderRequest req) => await _context.MakeAnOrder(req);
+    private readonly IOrdersService context;
 
+    public OrdersController(IOrdersService context)
+    {
+        this.context = context;
     }
+
+    [HttpGet]
+    public List<Order> ShowAllOrders()
+    {
+        var orders = context.ShowAllOrders();
+        return orders;
+    }
+
+    [HttpPost]
+    public async Task<Order> MakeAnOrder(NewOrderRequest req) => await context.MakeAnOrder(req);
 }

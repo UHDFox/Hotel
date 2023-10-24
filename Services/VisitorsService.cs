@@ -1,40 +1,36 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Hotel.Interfaces;
 using Hotel.Models;
-using Hotel.Interfaces;
-namespace Hotel.Services
+
+namespace Hotel.Services;
+
+internal sealed class VisitorsService : IVisitorsService
 {
+    private readonly DataContext context;
 
-   
-    public class VisitorsService : IVisitorsService
+    public VisitorsService(DataContext context)
     {
-        private readonly DataContext _context;
-        public VisitorsService(DataContext context)
-        {
-            _context = context;
-        }
-        public List<Visitor> ShowAllVisitors()
-        {
-            return _context.Visitors.ToList();
-        }
-        public async Task<Visitor> NewVisitor(NewVisitorRequest request)
-        {
-            Visitor newVisitor = new Visitor()
-            {
+        this.context = context;
+    }
 
-                Name = request.Name,
-                Surname = request.Surname,
-                Sex = request.Sex,
-                PhoneNumber = request.PhoneNumber,
-            };
-            var tracking = await _context.Visitors.AddAsync(newVisitor);
-            await _context.SaveChangesAsync();
-            return tracking.Entity;
-        }
-        public void DeleteVisitor(int id)
+    public List<Visitor> ShowAllVisitors() => context.Visitors.ToList();
+
+    public async Task<Visitor> NewVisitor(NewVisitorRequest request)
+    {
+        var newVisitor = new Visitor
         {
-            _context.Visitors.Remove(_context.Find<Visitor>(id));
-            _context.SaveChanges();
-        }
+            Name = request.Name,
+            Surname = request.Surname,
+            Sex = request.Sex,
+            PhoneNumber = request.PhoneNumber
+        };
+        var tracking = await context.Visitors.AddAsync(newVisitor);
+        await context.SaveChangesAsync();
+        return tracking.Entity;
+    }
+
+    public void DeleteVisitor(int id)
+    {
+        context.Visitors.Remove(context.Find<Visitor>(id));
+        context.SaveChanges();
     }
 }

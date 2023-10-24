@@ -1,10 +1,12 @@
-﻿namespace Hotel.Models
+﻿namespace Hotel.Models;
+
+public sealed class NewOrderRequest
 {
-    public class NewOrderRequest
-    {
-        public int RoomId { get; set; }
-        public int VisitorId { get; set; }
-        public DateTime CheckInDate { get; set; }
-        public DateTime LeavingDate { get; set; }
-    }
+    public int RoomId { get; set; }
+
+    public int VisitorId { get; set; }
+
+    public DateTime CheckInDate { get; set; }
+
+    public DateTime LeavingDate { get; set; }
 }

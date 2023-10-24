@@ -1,78 +1,49 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hotel.Interfaces;
 using Hotel.Models;
-using Microsoft.Identity.Client;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.ComponentModel.DataAnnotations;
-using Hotel.Interfaces;
-namespace Hotel.Services
+
+namespace Hotel.Services;
+
+internal sealed class RoomsService : IRoomsService
 {
+    private readonly DataContext context;
 
-    
-    public class RoomsService : IRoomsService
+    public RoomsService(DataContext context)
     {
-        private readonly DataContext _context;
-        public RoomsService(DataContext context)
-        {
-            _context = context;
-        }
-        public List<Room> ShowAllRooms()
-        {
-            return _context.Rooms.ToList();
-            
-        }
-        public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq)
-        {
+        this.context = context;
+    }
 
-            Room room = new Room()
-            {
-                Number = newRoomReq.Number,
-                HaveConditioner = newRoomReq.HaveConditioner,
-                HaveKitchen = newRoomReq.HaveKitchen,
-                IsOccupated = newRoomReq.IsOccupated
-            };
-            var tracking = await _context.AddAsync(room);
-            await _context.SaveChangesAsync();
-            return room;
-        }
+    public List<Room> ShowAllRooms() => context.Rooms.ToList();
 
-        public async Task<Room> BookARoom(int id)
+    public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq)
+    {
+        var room = new Room
         {
-            var wantedRoom = _context.Find<Room>(id);
-            if (wantedRoom.IsOccupated == true)
-            {
+            Number = newRoomReq.Number,
+            HaveConditioner = newRoomReq.HaveConditioner,
+            HaveKitchen = newRoomReq.HaveKitchen,
+            IsOccupated = newRoomReq.IsOccupated
+        };
+        await context.AddAsync(room);
+        await context.SaveChangesAsync();
+        return room;
+    }
 
-                throw new ArgumentException("We're sorry, but the room is already occupied. Please, choose another one");
-            }
-            else
-            {
-                wantedRoom.IsOccupated = true;
-            }
-            await _context.SaveChangesAsync();
-            return wantedRoom;
+    public async Task<Room> BookARoom(int id)
+    {
+        var wantedRoom = context.Find<Room>(id);
+        if (wantedRoom.IsOccupated)
+        {
+            throw new ArgumentException("We're sorry, but the room is already occupied. Please, choose another one");
         }
 
-        public void DeleteRoom(int id)
-        {
-            _context.Rooms.Remove(_context.Find<Room>(id));
-            _context.SaveChanges();
+        wantedRoom.IsOccupated = true;
+        await context.SaveChangesAsync();
+        return wantedRoom;
+    }
 
-        }
-
-
-
+    public void DeleteRoom(int id)
+    {
+        context.Rooms.Remove(context.Find<Room>(id));
+        context.SaveChanges();
     }
 }
-
-
-/*public int ID { get; set; }
-        public enum RoomType
-        {
-            Standart,
-            Superior,
-            Studio,
-            Suite,
-            Duplex
-        };
-        public bool HaveConditioner { get; set; }
-        public bool HaveKitchen { get; set; }
-        public bool IsOccupated { get; set; }*/
