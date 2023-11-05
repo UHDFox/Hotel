@@ -1,4 +1,6 @@
-﻿using Hotel.Interfaces;
+﻿using AutoMapper;
+using Hotel.Data;
+using Hotel.Interfaces;
 using Hotel.Models;
 
 namespace Hotel.Services;
@@ -6,23 +8,21 @@ namespace Hotel.Services;
 internal sealed class RoomsService : IRoomsService
 {
     private readonly DataContext context;
-
-    public RoomsService(DataContext context)
+    private readonly IMapper mapper;
+ 
+    public RoomsService(DataContext context, IMapper mapper)
     {
         this.context = context;
+        this.mapper = mapper;
     }
-
+    
     public List<Room> ShowAllRooms() => context.Rooms.ToList();
 
     public async Task<Room> AddNewRoom(NewRoomRequest newRoomReq)
     {
-        var room = new Room
-        {
-            Number = newRoomReq.Number,
-            HaveConditioner = newRoomReq.HaveConditioner,
-            HaveKitchen = newRoomReq.HaveKitchen,
-            IsOccupated = newRoomReq.IsOccupated
-        };
+
+        var room = mapper.Map<Room>(newRoomReq);
+
         await context.AddAsync(room);
         await context.SaveChangesAsync();
         return room;

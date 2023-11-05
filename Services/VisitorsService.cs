@@ -1,4 +1,5 @@
-﻿using Hotel.Interfaces;
+﻿using Hotel.Data;
+using Hotel.Interfaces;
 using Hotel.Models;
 
 namespace Hotel.Services;

@@ -1,4 +1,6 @@
+using Hotel.Data;
 using Hotel.Interfaces;
+using Hotel.Properties;
 using Hotel.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Hotel.Data;
 using Hotel.Interfaces;
+using Hotel.Properties;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Hotel.Services;
