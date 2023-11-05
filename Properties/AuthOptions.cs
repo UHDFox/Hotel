@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Hotel;
+namespace Hotel.Properties;
 
 public sealed class AuthOptions
 {

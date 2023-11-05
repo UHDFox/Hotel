@@ -1,7 +1,7 @@
 ﻿using Hotel.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Hotel;
+namespace Hotel.Data;
 
 public sealed class DataContext : DbContext
 {
